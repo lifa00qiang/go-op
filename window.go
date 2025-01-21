@@ -3,7 +3,7 @@ package opsoft
 import (
 	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
-	"go-op/tool"
+	"github.com/lifa00qiang/go-op/tool"
 	"strings"
 )
 
