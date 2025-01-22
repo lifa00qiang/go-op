@@ -3,6 +3,7 @@ package opsoft
 import (
 	"embed"
 	"errors"
+	"fmt"
 	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
 	"os"
@@ -27,19 +28,16 @@ var dllFS embed.FS
 func init() {
 	tools, _ := dllFS.ReadFile("dll/tools.dll")
 	opdll, _ := dllFS.ReadFile("dll/op_x64.dll")
-	tf, err := os.Create("dll/tools.dll")
+	err := os.WriteFile("dll/tools.dll", tools, 0644)
 	if err != nil {
+		fmt.Println("tools.dll写入失败")
 		return
 	}
-	tf.Write(tools)
-	tf.Close()
-	of, err := os.Create("dll/op_x64.dll")
+	err = os.WriteFile("dll/op_x64.dll", opdll, 0644)
 	if err != nil {
+		fmt.Println("op_x64.dll写入失败")
 		return
 	}
-	of.Write(opdll)
-	of.Close()
-
 	opTool = syscall.NewLazyDLL("dll/tools.dll")
 	_setupA = opTool.NewProc("setupA")
 	_setupW = opTool.NewProc("setupW")
