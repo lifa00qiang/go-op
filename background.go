@@ -9,43 +9,37 @@ import "github.com/go-ole/go-ole/oleutil"
 //GetBindWindow: 获取当前对象已经绑定的窗口句柄
 //接口方法
 
-type DisplayModel string
-
 const (
-	Normal     DisplayModel = "normal"      // 正常模式
-	NormalDxgi DisplayModel = "normal.dxgi" // dxgi 截图模式，这个速度更快，更省 CPU
-	NormalWgc  DisplayModel = "normal.wgc"  // wgc 截图模式，仅支持 win11 以上版本
-	Gdi        DisplayModel = "gdi"         // gdi 模式,用于窗口采用 GDI 方式刷新时,此模式占用 CPU 较大
-	Gdi2       DisplayModel = "gdi2"        // gdi2 模式,此模式兼容性较强,但是速度比 gdi 模式要慢许多
-	Dx         DisplayModel = "dx"          // dx 模式,等同于 dx.d3d9
-	Dx2        DisplayModel = "dx2"         // 等同于 dx2.d3d9
-	DxD3D9     DisplayModel = "dx.d3d9"     // d3d9 模式,使用 d3d9 渲染
-	DxD3D10    DisplayModel = "dx.d3d10"    // d3d10 模式,使用 d3d10 渲染
-	DxD3D11    DisplayModel = "dx.d3d11"    // d3d11 模式,使用 d3d11 渲染
-	DxD3D12    DisplayModel = "dx.d3d12"    // d3d12 模式,使用 d3d12 渲染
-	OpenGL     DisplayModel = "opengl"      // opengl 模式，使用 opengl 渲染的窗口
-	OpenGLStd  DisplayModel = "opengl.std"  //	测试中
-	OpenGLNox  DisplayModel = "opengl.nox"  // opengl 模式，针对最新夜神模拟器的渲染方式，测试中...
-	OpenGLEs   DisplayModel = "opengl.es"   // 测试中...
-	OpenGLFi   DisplayModel = "opengl.fi"   // 测试中...
+	Normal     string = "normal"      // 正常模式
+	NormalDxgi string = "normal.dxgi" // dxgi 截图模式，这个速度更快，更省 CPU
+	NormalWgc  string = "normal.wgc"  // wgc 截图模式，仅支持 win11 以上版本
+	Gdi        string = "gdi"         // gdi 模式,用于窗口采用 GDI 方式刷新时,此模式占用 CPU 较大
+	Gdi2       string = "gdi2"        // gdi2 模式,此模式兼容性较强,但是速度比 gdi 模式要慢许多
+	Dx         string = "dx"          // dx 模式,等同于 dx.d3d9
+	Dx2        string = "dx2"         // 等同于 dx2.d3d9
+	DxD3D9     string = "dx.d3d9"     // d3d9 模式,使用 d3d9 渲染
+	DxD3D10    string = "dx.d3d10"    // d3d10 模式,使用 d3d10 渲染
+	DxD3D11    string = "dx.d3d11"    // d3d11 模式,使用 d3d11 渲染
+	DxD3D12    string = "dx.d3d12"    // d3d12 模式,使用 d3d12 渲染
+	OpenGL     string = "opengl"      // opengl 模式，使用 opengl 渲染的窗口
+	OpenGLStd  string = "opengl.std"  //	测试中
+	OpenGLNox  string = "opengl.nox"  // opengl 模式，针对最新夜神模拟器的渲染方式，测试中...
+	OpenGLEs   string = "opengl.es"   // 测试中...
+	OpenGLFi   string = "opengl.fi"   // 测试中...
 )
 
-type MouseModel string
-
 const (
-	NormalMouse   MouseModel = "normal"    // 正常模式
-	NormalMouseHd MouseModel = "normal.hd" // hd 模式
-	WindowsMouse  MouseModel = "windows"   // windows 模式
-	DxMouse       MouseModel = "dx"        // dx 模式
+	NormalMouse   string = "normal"    // 正常模式
+	NormalMouseHd string = "normal.hd" // hd 模式
+	WindowsMouse  string = "windows"   // windows 模式
+	DxMouse       string = "dx"        // dx 模式
 )
 
-type KeypadModel string
-
 const (
-	NormalKeypad   KeypadModel = "normal"    // 正常模式
-	NormalKeypadHd KeypadModel = "normal.hd" // hd 模式
-	WindowsKeypad  KeypadModel = "windows"   // windows 模式
-	DxKeypad       KeypadModel = "dx"        // dx 模式
+	NormalKeypad   string = "normal"    // 正常模式
+	NormalKeypadHd string = "normal.hd" // hd 模式
+	WindowsKeypad  string = "windows"   // windows 模式
+	DxKeypad       string = "dx"        // dx 模式
 )
 
 // BindWindow
@@ -103,7 +97,7 @@ const (
 //
 // // display: gdi 鼠标:前台 键盘:前台 模式1
 // op_ret = op.BindWindow(hwnd,"gdi","normal","normal",1)
-func (o *Opsoft) BindWindow(hwnd int64, display DisplayModel, mouse MouseModel, keypad KeypadModel, mode int64) bool {
+func (o *Opsoft) BindWindow(hwnd int64, display string, mouse string, keypad string, mode int64) bool {
 	ret, _ := oleutil.CallMethod(o.op, "BindWindow", hwnd, display, mouse, keypad, mode)
 	return ret.Val == 1
 }
