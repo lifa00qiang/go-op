@@ -298,8 +298,8 @@ func (o *Opsoft) FindStr(x1, y1, x2, y2 int64, str string, colorFormat string, s
 	}()
 	ret, _ := oleutil.CallMethod(o.op, "FindStr", x1, y1, x2, y2, str, colorFormat, sim, &x_, &y_)
 
-	intX = &x_.Val
-	intY = &y_.Val
+	*intX = x_.Val
+	*intY = y_.Val
 	return ret.Value() == 1
 }
 

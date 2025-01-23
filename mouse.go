@@ -1,6 +1,7 @@
 package opsoft
 
 import (
+	"fmt"
 	"github.com/go-ole/go-ole"
 	"github.com/go-ole/go-ole/oleutil"
 )
@@ -51,11 +52,14 @@ func (o *Opsoft) GetCursorPos(x, y *int64) bool {
 		x_.Clear()
 		y_.Clear()
 	}()
-	ret, _ := oleutil.CallMethod(o.op, "GetCursorPos", &x_, &y_)
+	ret, err := oleutil.CallMethod(o.op, "GetCursorPos", &x_, &y_)
+	if err != nil {
+		fmt.Println("", err.Error())
+	}
 
-	x = &x_.Val
-	y = &y_.Val
-	return ret.Value() == 1
+	*x = x_.Val
+	*y = y_.Val
+	return ret.Value() == 0
 
 }
 

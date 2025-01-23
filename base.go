@@ -1,6 +1,8 @@
 package opsoft
 
-import "github.com/go-ole/go-ole/oleutil"
+import (
+	"github.com/go-ole/go-ole/oleutil"
+)
 
 //接口目录
 //Ver: 插件版本号
@@ -46,8 +48,8 @@ func (o *Opsoft) Ver() string {
 // 示例
 //
 // 无
-func (s *Opsoft) SetPath(path string) bool {
-	ret, _ := oleutil.CallMethod(s.op, "SetPath", path)
+func (o *Opsoft) SetPath(path string) bool {
+	ret, _ := oleutil.CallMethod(o.op, "SetPath", path)
 	return ret.Val == 1
 }
 
@@ -157,8 +159,8 @@ func (o *Opsoft) SetShowErrorMsg(show int64) bool {
 // 示例
 //
 // 无
-func (s *Opsoft) Sleep(millisecond int64) bool {
-	ret, _ := oleutil.CallMethod(s.op, "Sleep", millisecond)
+func (o *Opsoft) Sleep(millisecond int64) bool {
+	ret, _ := oleutil.CallMethod(o.op, "Sleep", millisecond)
 	return ret.Val == 1
 }
 

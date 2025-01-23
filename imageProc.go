@@ -119,8 +119,8 @@ func (o *Opsoft) FindColor(x1 int64, y1 int64, x2 int64, y2 int64, color string,
 	}()
 	ret, _ := oleutil.CallMethod(o.op, "FindColor", x1, y1, x2, y2, color, sim, dir, &x_, &y_)
 
-	intX = &x_.Val
-	intY = &y_.Val
+	*intX = x_.Val
+	*intY = y_.Val
 	return ret.Value() == 1
 }
 
@@ -192,8 +192,8 @@ func (o *Opsoft) FindMultiColor(x1 int64, y1 int64, x2 int64, y2 int64, firstCol
 		y_.Clear()
 	}()
 	ret, _ := oleutil.CallMethod(o.op, "FindMultiColor", x1, y1, x2, y2, firstColor, offsetColor, sim, dir, &x_, &y_)
-	intX = &x_.Val
-	intY = &y_.Val
+	*intX = x_.Val
+	*intY = y_.Val
 	return ret.Value() == 1
 }
 
@@ -269,8 +269,8 @@ func (o *Opsoft) FindPic(x1 int64, y1 int64, x2 int64, y2 int64, picName string,
 		y_.Clear()
 	}()
 	ret, _ := oleutil.CallMethod(o.op, "FindPic", x1, y1, x2, y2, picName, deltaColor, sim, dir, &x_, &y_)
-	intX = &x_.Val
-	intY = &y_.Val
+	*intX = x_.Val
+	*intY = y_.Val
 	return ret.Value() == 1
 }
 
@@ -401,8 +401,8 @@ func (o *Opsoft) FindColorBlock(x1 int64, y1 int64, x2 int64, y2 int64, color st
 		y_.Clear()
 	}()
 	ret, _ := oleutil.CallMethod(o.op, "FindColorBlock", x1, y1, x2, y2, color, sim, count, width, height, &x_, &y_)
-	intX = &x_.Val
-	intY = &y_.Val
+	*intX = x_.Val
+	*intY = y_.Val
 	return ret.Value() == 1
 }
 

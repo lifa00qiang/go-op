@@ -16,7 +16,7 @@ import (
 //FindWindowByProcessId: 根据进程 Id 寻找窗口
 //FindWindowEx: 寻找窗口
 //GetClientRect: 获取窗口客户区域矩形
-//GetClientSize: 获取窗口客户区域大小u
+//GetClientSize: 获取窗口客户区域大小
 //GetForegroundFocus: 获取具有输入焦点的窗口句柄
 //GetForegroundWindow: 获取顶层活动窗口
 //GetMousePointWindow: 获取鼠标指定坐标窗口句柄
