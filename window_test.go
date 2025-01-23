@@ -228,34 +228,9 @@ func TestOpsoft_GetClientRect(t *testing.T) {
 }
 
 func TestOpsoft_GetClientSize(t *testing.T) {
-	type fields struct {
-		op       *ole.IDispatch
-		IUnknown *ole.IUnknown
-	}
-	type args struct {
-		hwnd   int64
-		width  *int64
-		height *int64
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			o := &Opsoft{
-				op:       tt.fields.op,
-				IUnknown: tt.fields.IUnknown,
-			}
-			if got := o.GetClientSize(tt.args.hwnd, tt.args.width, tt.args.height); got != tt.want {
-				t.Errorf("GetClientSize() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+	var x, y int64
+	op.GetClientSize(8326160, &x, &y)
+	fmt.Println("", x, y)
 }
 
 func TestOpsoft_GetForegroundFocus(t *testing.T) {
@@ -696,34 +671,14 @@ func TestOpsoft_SetClientSize(t *testing.T) {
 }
 
 func TestOpsoft_SetWindowSize(t *testing.T) {
-	type fields struct {
-		op       *ole.IDispatch
-		IUnknown *ole.IUnknown
-	}
-	type args struct {
-		hwnd   int64
-		width  int64
-		height int64
-	}
-	tests := []struct {
-		name   string
-		fields fields
-		args   args
-		want   bool
-	}{
-		// TODO: Add test cases.
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			o := &Opsoft{
-				op:       tt.fields.op,
-				IUnknown: tt.fields.IUnknown,
-			}
-			if got := o.SetWindowSize(tt.args.hwnd, tt.args.width, tt.args.height); got != tt.want {
-				t.Errorf("SetWindowSize() = %v, want %v", got, tt.want)
-			}
-		})
-	}
+	op.SetWindowState(8326160, 1)
+	op.Sleep(1000)
+	op.SetWindowSize(8326160, 800, 600)
+	op.Sleep(1000)
+
+	op.MoveWindow(8326160, 0, 0)
+	op.Sleep(1000)
+
 }
 
 func TestOpsoft_SetWindowState(t *testing.T) {
